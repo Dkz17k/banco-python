@@ -63,7 +63,7 @@ def cadastrar_usuario():
     usuario_senha = input('Insira uma senha para o Usuário que você deseja cadastrar: ')
     usuario_categoria = input('Insira a categoria do Usuário que você deseja cadastrar: ')
     usuario_esta_ativo = False
-    print('Usuário ativado com sucesso!')
+    print('Usuário cadastrado com sucesso!')
     usuarios.append({
         'nome': usuario_ativado,
         'categoria': usuario_categoria,
@@ -76,13 +76,17 @@ def cadastrar_usuario():
 def listar_usuario():
     os.system('cls')
     print('Usuários cadastrados:\n')
-    for pessoa in usuarios:
-        nome_cliente = pessoa['nome']
-        categoria_client = pessoa['categoria']
-        esta_ativado = 'Conta Ativada!' if pessoa['ativado'] else 'A conta ainda não está ativada.'
-        print(f'|{nome_cliente}\n|{categoria_client}\n|Estado da conta: {esta_ativado}\n')
+    if not usuarios:
+        print('Nenhum usuário cadastrado.')
+        voltar_ao_menu_principal()
+    else:
+        for pessoa in usuarios:
+            nome_cliente = pessoa['nome']
+            categoria_client = pessoa['categoria']
+            esta_ativado = 'Conta Ativada!' if pessoa['ativado'] else 'A conta ainda não está ativada.'
+            print(f'|{nome_cliente}\n|{categoria_client}\n|Estado da conta: {esta_ativado}\n')
     voltar_ao_menu_principal()
-    
+
 def depositar():
     str(input('Quanto você deseja depositar? '))
     print('Depositado com sucesso!')
@@ -96,6 +100,7 @@ def denunciar():
 
 def opcao_invalida():
     print('\nOpção invalida!')
+    print('\n' * 100)
     voltar_ao_menu_principal()
 
 def escolher_opcao():
